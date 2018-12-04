@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Reliz.wideup.net/box" parallel="false">
+    <test name="Fast_Suite">
+        <classes>
+
+            <class name="NewSeleniumTest"/>
+            <class name="NewSeleniumTest2"/>
+            <class name="TestNew"/>
+
+
+        </classes>
+    </test>
+
+</suite>
+
