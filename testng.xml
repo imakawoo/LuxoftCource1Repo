@@ -4,9 +4,7 @@
     <test name="Fast_Suite">
         <classes>
 
-            <class name="NewSeleniumTest"/>
-            <class name="NewSeleniumTest2"/>
-            <class name="TestNew"/>
+            <class name="LoginFacebook"/>
 
 
         </classes>

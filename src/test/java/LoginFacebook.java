@@ -7,6 +7,7 @@ import ui_Layer.LoginPage;
 import ui_Layer.NavBarPage;
 
 import static core.Config.getBaseURL;
+import static core.ExtendedReports.launchTest;
 
 /**
  * Created by Igor on 9/19/2018.
@@ -21,6 +22,7 @@ public class LoginFacebook extends BaseTest {
         navBarPage = new NavBarPage();
 
 
+        launchTest("Login Facebook Negative", "Login Facebook verification errors");
 
         Driver.get().get(getBaseURL());
 

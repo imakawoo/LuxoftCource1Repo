@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static core.Config.getBaseURL;
+import static core.ExtendedReports.*;
 
 
 public class ScreenshotListener extends TestListenerAdapter {
@@ -39,8 +40,38 @@ public class ScreenshotListener extends TestListenerAdapter {
         System.out.println("TEST FAILED!!!!!!!!!!!!!!!!!!");
 
         System.out.println("Screenshot taken to " + System.getProperty("user.dir") + "\\screenshots\\" + filename);
+        doScreenshot(System.getProperty("user.dir") + "\\screenshots\\" + filename);
 
-        Driver.get().get(getBaseURL());
+        failTest();
+
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult tr){
+        String filename = tr.getName() + "_" + (System.currentTimeMillis()/1000) + ".png";
+        File screenshot = new File("screenshots" + File.separator + filename);
+        if (!screenshot.exists()) {
+            new File(screenshot.getParent()).mkdirs();
+            try {
+                screenshot.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            new FileOutputStream(screenshot).write(((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Screenshot taken to " + System.getProperty("user.dir") + "\\screenshots\\" + filename);
+        doScreenshot(System.getProperty("user.dir") + "\\screenshots\\" + filename);
+
+        System.out.println("Test Skipped!");
+
+        skipTest();
 
     }
 
@@ -67,6 +98,9 @@ public class ScreenshotListener extends TestListenerAdapter {
         System.out.println("Screenshot taken to " + System.getProperty("user.dir") + "\\screenshots\\" + filename);
 
         System.out.println("Test Passed!");
+        doScreenshot(System.getProperty("user.dir") + "\\screenshots\\" + filename);
+
+        passTest();
     }
 
 }
