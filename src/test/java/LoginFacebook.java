@@ -20,11 +20,10 @@ public class LoginFacebook extends BaseTest {
     public void verifyLogin(String email, String password,String errorField, String errorMessage){
 
         navBarPage = new NavBarPage();
-
-
-        launchTest("Login Facebook Negative", "Login Facebook verification errors");
+         
 
         Driver.get().get(getBaseURL());
+		Driver.get().get(getBaseURL());
 
         LoginPage loginPage = navBarPage.clickLogin();
 
